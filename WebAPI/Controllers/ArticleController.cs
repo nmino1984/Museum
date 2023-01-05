@@ -17,12 +17,12 @@ namespace API.Controllers
             this._articleApplication = articleApplication;
         }
 
-        [HttpPost]
+        /*[HttpPost]
         public async Task<IActionResult> ListArticles([FromBody] BaseFiltersRequest filters)
         {
             var response = await _articleApplication.ListArticles(filters);
             return Ok(response);
-        }
+        }*/
 
         [HttpGet("All")]
         public async Task<IActionResult> ListAllArticles()
@@ -46,16 +46,23 @@ namespace API.Controllers
         }
 
         [HttpPut("Edit/{articleId:int}")]
-        public async Task<IActionResult> EditArticle([FromRoute] int categoryId, [FromBody] ArticleRequestViewModel requestViewModel)
+        public async Task<IActionResult> EditArticle([FromRoute] int articleId, [FromBody] ArticleRequestViewModel requestViewModel)
         {
-            var response = await _articleApplication.EditArticle(categoryId, requestViewModel);
+            var response = await _articleApplication.EditArticle(articleId, requestViewModel);
             return Ok(response);
         }
 
-        [HttpPut("Delete/{articleId:int}")]
+        [HttpDelete("Delete/{articleId:int}")]
         public async Task<IActionResult> DeleteArticle([FromRoute] int articleId)
         {
             var response = await _articleApplication.DeleteArticle(articleId);
+            return Ok(response);
+        }
+
+        [HttpPut("Remove/{articleId:int}")]
+        public async Task<IActionResult> RemoveArticle([FromRoute] int articleId)
+        {
+            var response = await _articleApplication.RemoveArticle(articleId);
             return Ok(response);
         }
     }

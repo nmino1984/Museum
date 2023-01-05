@@ -10,6 +10,7 @@ using Infrastructure.Commons.Bases.Request;
 using Infrastructure.Commons.Bases.Response;
 using Infrastructure.Persistences.Interfaces;
 using Utilities.Statics;
+using System.Collections.Generic;
 
 namespace Application.Services
 {
@@ -26,15 +27,60 @@ namespace Application.Services
             _validationRules = validationRules;
         }
 
-        public async Task<BaseResponse<BaseEntityResponse<MuseumResponseViewModel>>> ListMuseums(BaseFiltersRequest filters)
+        /*public async Task<BaseResponse<IEnumerable<MuseumResponseViewModel>>> ListMuseums(BaseFiltersRequest filters)
         {
-            var response = new BaseResponse<BaseEntityResponse<MuseumResponseViewModel>>();
+            var response = new BaseResponse<IEnumerable<MuseumResponseViewModel>>();
             var museums = await _unitOfWork.Museum.ListMuseums(filters);
+            var articles = await _unitOfWork.Article.GetAllAsync();
 
             if (museums is not null)
             {
+                foreach (var item in museums.Items!)
+                {
+                    foreach (var article in articles)
+                    {
+                        if (article.IdMuseum == item.Id)
+                        {
+                            article.IdMuseumNavigation = item;
+                            item.Articles.Add(article);
+                        }
+                    }
+                }
                 response.IsSuccess = true;
-                response.Data = _mapper.Map<BaseEntityResponse<MuseumResponseViewModel>>(museums);
+                response.Data = _mapper.Map<IEnumerable<MuseumResponseViewModel>>(museums);
+                response.Message = ReplyMessages.MESSAGE_QUERY;
+            }
+            else
+            {
+                response.IsSuccess = false;
+                response.Message = ReplyMessages.MESSAGE_QUERY_EMPTY;
+            }
+
+            return response;
+        }
+        */
+        public async Task<BaseResponse<IEnumerable<MuseumResponseViewModel>>> ListAllMuseums()
+        {
+            var response = new BaseResponse<IEnumerable<MuseumResponseViewModel>>();
+            var museums = await _unitOfWork.Museum.GetAllAsync();
+            var articles = await _unitOfWork.Article.GetAllAsync();
+
+
+            if (museums is not null)
+            {
+                foreach (var item in articles)
+                {
+                    var idMuseum = item.IdMuseum;
+                    if (item.IdMuseum == idMuseum)
+                    {
+                        var museum = museums.Where(w => w.Id == idMuseum).FirstOrDefault();
+                        item.IdMuseumNavigation = museum!;
+                        museum!.Articles.Add(item);
+                    }
+
+                }
+                response.IsSuccess = true;
+                response.Data = _mapper.Map<IEnumerable<MuseumResponseViewModel>>(museums);
                 response.Message = ReplyMessages.MESSAGE_QUERY;
             }
             else
@@ -70,9 +116,18 @@ namespace Application.Services
         {
             var response = new BaseResponse<MuseumResponseViewModel>();
             var museum = await _unitOfWork.Museum.GetByIdAsync(museumId);
+            var articles = await _unitOfWork.Article.GetAllAsync();
 
             if (museum is not null)
             {
+                foreach (var article in articles)
+                {
+                    article.IdMuseumNavigation = museum;
+                    if (article.IdMuseum == museum.Id)
+                    {
+                        museum.Articles.Add(article);
+                    }
+                }
                 response.IsSuccess = true;
                 response.Data = _mapper.Map<MuseumResponseViewModel>(museum);
                 response.Message = ReplyMessages.MESSAGE_QUERY;
@@ -86,18 +141,26 @@ namespace Application.Services
             return response;
         }
 
-        public async Task<BaseResponse<IEnumerable<ArticleRequestViewModel>>> GetArticlesByMuseum(int museumId)
+        public async Task<BaseResponse<IEnumerable<ArticleResponseViewModel>>> GetArticlesByMuseum(int museumId)
         {
-            var response = new BaseResponse<IEnumerable<ArticleRequestViewModel>>();
+            var response = new BaseResponse<IEnumerable<ArticleResponseViewModel>>();
             var museum = await _unitOfWork.Museum.GetByIdAsync(museumId);
-            var articles = _unitOfWork.Article.;
+            var articles = await _unitOfWork.Article.GetAllAsync();
+
+            articles = articles.Where(w => w.IdMuseum == museumId);
+
+            foreach (var item in articles)
+            {
+                museum.Articles.Add(item);
+                item.IdMuseumNavigation = museum;
+            }
 
             if (museum is not null)
             {
                 if (articles is not null)
                 {
                     response.IsSuccess = true;
-                    response.Data = (IEnumerable<ArticleRequestViewModel>?)_mapper.Map<ArticleRequestViewModel>(articles);
+                    response.Data = _mapper.Map<IEnumerable<ArticleResponseViewModel>>(articles);
                     response.Message = ReplyMessages.MESSAGE_QUERY;
 
                 }
@@ -207,6 +270,35 @@ namespace Application.Services
                 {
                     response.IsSuccess = true;
                     response.Message = ReplyMessages.MESSAGE_DELETE;
+                }
+                else
+                {
+                    response.IsSuccess = false;
+                    response.Message = ReplyMessages.MESSAGE_FAILED;
+                }
+            }
+
+            return response;
+        }
+
+        public async Task<BaseResponse<bool>> RemoveMuseum(int museumId)
+        {
+            var response = new BaseResponse<bool>();
+            var museumDelete = await GetMuseumById(museumId);
+
+            if (museumDelete is null)
+            {
+                response.IsSuccess = false;
+                response.Message = ReplyMessages.MESSAGE_QUERY_EMPTY;
+            }
+            else
+            {
+                response.Data = await _unitOfWork.Museum.RemoveAsync(museumId);
+
+                if (response.Data)
+                {
+                    response.IsSuccess = true;
+                    response.Message = ReplyMessages.MESSAGE_REMOVED;
                 }
                 else
                 {

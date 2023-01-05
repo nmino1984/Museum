@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces;
+using Application.Services;
 using Application.ViewModels.Request;
 using Infrastructure.Commons.Bases.Request;
 using Microsoft.AspNetCore.Http;
@@ -17,10 +18,17 @@ namespace API.Controllers
             this._museumApplication = museumApplication;
         }
 
-        [HttpPost]
+        /*[HttpPost]
         public async Task<IActionResult> ListMuseums([FromBody] BaseFiltersRequest filters)
         {
             var response = await _museumApplication.ListMuseums(filters);
+            return Ok(response);
+        }*/
+
+        [HttpGet("All")]
+        public async Task<IActionResult> ListAllMuseums()
+        {
+            var response = await _museumApplication.ListAllMuseums();
             return Ok(response);
         }
 
@@ -52,10 +60,17 @@ namespace API.Controllers
             return Ok(response);
         }
 
-        [HttpPut("Delete/{museumId:int}")]
+        [HttpDelete("Delete/{museumId:int}")]
         public async Task<IActionResult> DeleteMuseum([FromRoute] int museumId)
         {
             var response = await _museumApplication.DeleteMuseum(museumId);
+            return Ok(response);
+        }
+
+        [HttpPut("Remove/{museumId:int}")]
+        public async Task<IActionResult> RemoveMuseum([FromRoute] int museumId)
+        {
+            var response = await _museumApplication.RemoveMuseum(museumId);
             return Ok(response);
         }
     }

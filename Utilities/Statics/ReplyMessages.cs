@@ -13,6 +13,7 @@ namespace Utilities.Statics
         public const string MESSAGE_SAVE = "Item Saved Successfully";
         public const string MESSAGE_UPDATE = "Item Updated Successfully";
         public const string MESSAGE_DELETE = "Item Deleted Successfully";
+        public const string MESSAGE_REMOVED = "Item Removed Successfully";
         public const string MESSAGE_EXIST = "Item Exists already.";
         public const string MESSAGE_ACTIVATE = "Item has been Activated";
         public const string MESSAGE_TOKEN = "Token generated Successfully";

@@ -12,14 +12,16 @@ namespace Application.Mappers
         public MuseumMappingsProfile()
         {
             CreateMap<Museum, MuseumResponseViewModel>()
-                /*.ForMember(x => x.CategoryId, x => x.MapFrom(y => y.Id))*/
-                .ForMember(x => x.ThemeId, x => x.MapFrom(y => (Themes)(y.Theme)))
+                .ForMember(dest => dest.listArticles, opt => opt.MapFrom(src => src.Articles.ToList()))
+                .ForMember(dest => dest.ThemeId, opt => opt.MapFrom(src => src.Theme))
+                .ForMember(dest => dest.Theme, opt => opt.MapFrom(src => (Themes)(src.Theme)))
                 .ReverseMap();
 
             CreateMap<BaseEntityResponse<Museum>, BaseEntityResponse<MuseumResponseViewModel>>()
                 .ReverseMap();
 
-            CreateMap<MuseumRequestViewModel, Museum>();
+            CreateMap<MuseumRequestViewModel, Museum>()
+                .ReverseMap();
 
             CreateMap<Museum, MuseumSelectResponseViewModel>()
                 .ForMember(x => x.MuseumId, x => x.MapFrom(y => y.Id))

@@ -12,12 +12,14 @@ namespace Application.Mappers
         public ArticleMappingsProfile()
         {
             CreateMap<Article, ArticleResponseViewModel>()
+                .ForMember(dest => dest.NameMuseum, opt => opt.MapFrom(src => src.IdMuseumNavigation.Name))
                 .ReverseMap();
 
             CreateMap<BaseEntityResponse<Article>, BaseEntityResponse<ArticleResponseViewModel>>()
                 .ReverseMap();
 
-            CreateMap<ArticleRequestViewModel, Article>();
+            CreateMap<ArticleRequestViewModel, Article>()
+                .ReverseMap();
 
             /*CreateMap<Category, CategorySelectResponseViewModel>()
                 .ForMember(x => x.CategoryId, x => x.MapFrom(y => y.Id))

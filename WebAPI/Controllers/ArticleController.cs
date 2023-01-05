@@ -32,7 +32,7 @@ namespace API.Controllers
         }
 
         [HttpGet("{articleId:int}")]
-        public async Task<IActionResult> ArticleById(int articleId)
+        public async Task<IActionResult> GetArticleById(int articleId)
         {
             var response = await _articleApplication.GetArticleById(articleId);
             return Ok(response);

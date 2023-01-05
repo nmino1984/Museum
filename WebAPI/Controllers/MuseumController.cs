@@ -32,17 +32,17 @@ namespace API.Controllers
             return Ok(response);
         }
 
-        [HttpGet("ArticlesByMuseum/{museumId:int}")]
-        public async Task<IActionResult> ListArticlesByMuseum(int museumId)
-        {
-            var response = await _museumApplication.GetArticlesByMuseum(museumId);
-            return Ok(response);
-        }
-
         [HttpGet("{museumId:int}")]
         public async Task<IActionResult> MuseumById(int museumId)
         {
             var response = await _museumApplication.GetMuseumById(museumId);
+            return Ok(response);
+        }
+
+        [HttpGet("ArticlesByMuseum/{museumId:int}")]
+        public async Task<IActionResult> ListArticlesByMuseum(int museumId)
+        {
+            var response = await _museumApplication.GetArticlesByMuseum(museumId);
             return Ok(response);
         }
 

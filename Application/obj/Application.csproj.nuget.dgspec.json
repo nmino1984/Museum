@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museums\\Application\\Application.csproj": {}
+    "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museum\\Application\\Application.csproj": {}
   },
   "projects": {
-    "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museums\\Application\\Application.csproj": {
+    "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museum\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museums\\Application\\Application.csproj",
+        "projectUniqueName": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museum\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museums\\Application\\Application.csproj",
-        "packagesPath": "C:\\Users\\noel\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museums\\Application\\obj\\",
+        "projectPath": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museum\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\elNoe\\.nuget\\packages\\",
+        "outputPath": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museum\\Application\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\noel\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\elNoe\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -32,14 +28,14 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museums\\Domain\\Domain.csproj": {
-                "projectPath": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museums\\Domain\\Domain.csproj"
+              "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museum\\Domain\\Domain.csproj": {
+                "projectPath": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museum\\Domain\\Domain.csproj"
               },
-              "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museums\\infrastructure\\Infrastructure.csproj": {
-                "projectPath": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museums\\infrastructure\\Infrastructure.csproj"
+              "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museum\\infrastructure\\Infrastructure.csproj": {
+                "projectPath": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museum\\infrastructure\\Infrastructure.csproj"
               },
-              "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museums\\Utilities\\Utilities.csproj": {
-                "projectPath": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museums\\Utilities\\Utilities.csproj"
+              "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museum\\Utilities\\Utilities.csproj": {
+                "projectPath": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museum\\Utilities\\Utilities.csproj"
               }
             }
           }
@@ -87,25 +83,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museums\\Domain\\Domain.csproj": {
+    "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museum\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museums\\Domain\\Domain.csproj",
+        "projectUniqueName": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museum\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museums\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\noel\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museums\\Domain\\obj\\",
+        "projectPath": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museum\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\elNoe\\.nuget\\packages\\",
+        "outputPath": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museum\\Domain\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\noel\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\elNoe\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -158,25 +150,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museums\\infrastructure\\Infrastructure.csproj": {
+    "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museum\\infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museums\\infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museum\\infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museums\\infrastructure\\Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\noel\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museums\\infrastructure\\obj\\",
+        "projectPath": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museum\\infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\elNoe\\.nuget\\packages\\",
+        "outputPath": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museum\\infrastructure\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\noel\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\elNoe\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -190,11 +178,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museums\\Domain\\Domain.csproj": {
-                "projectPath": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museums\\Domain\\Domain.csproj"
+              "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museum\\Domain\\Domain.csproj": {
+                "projectPath": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museum\\Domain\\Domain.csproj"
               },
-              "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museums\\Utilities\\Utilities.csproj": {
-                "projectPath": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museums\\Utilities\\Utilities.csproj"
+              "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museum\\Utilities\\Utilities.csproj": {
+                "projectPath": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museum\\Utilities\\Utilities.csproj"
               }
             }
           }
@@ -230,25 +218,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museums\\Utilities\\Utilities.csproj": {
+    "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museum\\Utilities\\Utilities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museums\\Utilities\\Utilities.csproj",
+        "projectUniqueName": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museum\\Utilities\\Utilities.csproj",
         "projectName": "Utilities",
-        "projectPath": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museums\\Utilities\\Utilities.csproj",
-        "packagesPath": "C:\\Users\\noel\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museums\\Utilities\\obj\\",
+        "projectPath": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museum\\Utilities\\Utilities.csproj",
+        "packagesPath": "C:\\Users\\elNoe\\.nuget\\packages\\",
+        "outputPath": "D:\\GitHub\\C#\\XtraTravel_Exercise\\Museum\\Utilities\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\noel\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\elNoe\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -289,7 +273,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

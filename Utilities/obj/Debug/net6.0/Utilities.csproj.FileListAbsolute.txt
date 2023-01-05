@@ -10,3 +10,15 @@ D:\GitHub\C#\XtraTravel_Exercise\Museums\Utilities\obj\Debug\net6.0\Utilities.dl
 D:\GitHub\C#\XtraTravel_Exercise\Museums\Utilities\obj\Debug\net6.0\refint\Utilities.dll
 D:\GitHub\C#\XtraTravel_Exercise\Museums\Utilities\obj\Debug\net6.0\Utilities.pdb
 D:\GitHub\C#\XtraTravel_Exercise\Museums\Utilities\obj\Debug\net6.0\ref\Utilities.dll
+D:\GitHub\C#\XtraTravel_Exercise\Museum\Utilities\bin\Debug\net6.0\Utilities.deps.json
+D:\GitHub\C#\XtraTravel_Exercise\Museum\Utilities\bin\Debug\net6.0\Utilities.dll
+D:\GitHub\C#\XtraTravel_Exercise\Museum\Utilities\bin\Debug\net6.0\Utilities.pdb
+D:\GitHub\C#\XtraTravel_Exercise\Museum\Utilities\obj\Debug\net6.0\Utilities.csproj.AssemblyReference.cache
+D:\GitHub\C#\XtraTravel_Exercise\Museum\Utilities\obj\Debug\net6.0\Utilities.GeneratedMSBuildEditorConfig.editorconfig
+D:\GitHub\C#\XtraTravel_Exercise\Museum\Utilities\obj\Debug\net6.0\Utilities.AssemblyInfoInputs.cache
+D:\GitHub\C#\XtraTravel_Exercise\Museum\Utilities\obj\Debug\net6.0\Utilities.AssemblyInfo.cs
+D:\GitHub\C#\XtraTravel_Exercise\Museum\Utilities\obj\Debug\net6.0\Utilities.csproj.CoreCompileInputs.cache
+D:\GitHub\C#\XtraTravel_Exercise\Museum\Utilities\obj\Debug\net6.0\Utilities.dll
+D:\GitHub\C#\XtraTravel_Exercise\Museum\Utilities\obj\Debug\net6.0\refint\Utilities.dll
+D:\GitHub\C#\XtraTravel_Exercise\Museum\Utilities\obj\Debug\net6.0\Utilities.pdb
+D:\GitHub\C#\XtraTravel_Exercise\Museum\Utilities\obj\Debug\net6.0\ref\Utilities.dll

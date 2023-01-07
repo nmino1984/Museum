@@ -17,13 +17,6 @@ namespace API.Controllers
             this._articleApplication = articleApplication;
         }
 
-        /*[HttpPost]
-        public async Task<IActionResult> ListArticles([FromBody] BaseFiltersRequest filters)
-        {
-            var response = await _articleApplication.ListArticles(filters);
-            return Ok(response);
-        }*/
-
         [HttpGet("All")]
         public async Task<IActionResult> ListAllArticles()
         {
@@ -52,6 +45,11 @@ namespace API.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Delete permanently an Article from Database
+        /// </summary>
+        /// <param name="articleId">Identifier of the Article</param>
+        /// <returns>True Response if Action performs correctly</returns>
         [HttpDelete("Delete/{articleId:int}")]
         public async Task<IActionResult> DeleteArticle([FromRoute] int articleId)
         {
@@ -59,6 +57,11 @@ namespace API.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Removes an Article from database, updating DeletedAt field. 
+        /// </summary>
+        /// <param name="articleId"></param>
+        /// <returns></returns>
         [HttpPut("Remove/{articleId:int}")]
         public async Task<IActionResult> RemoveArticle([FromRoute] int articleId)
         {

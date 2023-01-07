@@ -18,13 +18,6 @@ namespace API.Controllers
             this._museumApplication = museumApplication;
         }
 
-        /*[HttpPost]
-        public async Task<IActionResult> ListMuseums([FromBody] BaseFiltersRequest filters)
-        {
-            var response = await _museumApplication.ListMuseums(filters);
-            return Ok(response);
-        }*/
-
         [HttpGet("All")]
         public async Task<IActionResult> ListAllMuseums()
         {
@@ -32,8 +25,15 @@ namespace API.Controllers
             return Ok(response);
         }
 
+        [HttpGet("Select")]
+        public async Task<IActionResult> ListSelectMuseums()
+        {
+            var response = await _museumApplication.ListSelectMuseums();
+            return Ok(response);
+        }
+
         [HttpGet("{museumId:int}")]
-        public async Task<IActionResult> MuseumById(int museumId)
+        public async Task<IActionResult> GetMuseumById(int museumId)
         {
             var response = await _museumApplication.GetMuseumById(museumId);
             return Ok(response);
@@ -46,8 +46,15 @@ namespace API.Controllers
             return Ok(response);
         }
 
+        [HttpGet("GetMuseumsByTheme/{theme:int}")]
+        public async Task<IActionResult> GetMuseumsByTheme(int theme)
+        {
+            var response = await _museumApplication.GetMuseumsByTheme(theme);
+            return Ok(response);
+        }
+
         [HttpPost("Register")]
-        public async Task<IActionResult> RegisterCategory([FromBody] MuseumRequestViewModel requestViewModel)
+        public async Task<IActionResult> RegisterMuseum([FromBody] MuseumRequestViewModel requestViewModel)
         {
             var response = await _museumApplication.RegisterMuseum(requestViewModel);
             return Ok(response);

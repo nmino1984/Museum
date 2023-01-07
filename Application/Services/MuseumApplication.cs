@@ -27,38 +27,6 @@ namespace Application.Services
             _validationRules = validationRules;
         }
 
-        /*public async Task<BaseResponse<IEnumerable<MuseumResponseViewModel>>> ListMuseums(BaseFiltersRequest filters)
-        {
-            var response = new BaseResponse<IEnumerable<MuseumResponseViewModel>>();
-            var museums = await _unitOfWork.Museum.ListMuseums(filters);
-            var articles = await _unitOfWork.Article.GetAllAsync();
-
-            if (museums is not null)
-            {
-                foreach (var item in museums.Items!)
-                {
-                    foreach (var article in articles)
-                    {
-                        if (article.IdMuseum == item.Id)
-                        {
-                            article.IdMuseumNavigation = item;
-                            item.Articles.Add(article);
-                        }
-                    }
-                }
-                response.IsSuccess = true;
-                response.Data = _mapper.Map<IEnumerable<MuseumResponseViewModel>>(museums);
-                response.Message = ReplyMessages.MESSAGE_QUERY;
-            }
-            else
-            {
-                response.IsSuccess = false;
-                response.Message = ReplyMessages.MESSAGE_QUERY_EMPTY;
-            }
-
-            return response;
-        }
-        */
         public async Task<BaseResponse<IEnumerable<MuseumResponseViewModel>>> ListAllMuseums()
         {
             var response = new BaseResponse<IEnumerable<MuseumResponseViewModel>>();
@@ -169,6 +137,42 @@ namespace Application.Services
                     response.IsSuccess = false;
                     response.Message = ReplyMessages.MESSAGE_QUERY_EMPTY;
                 }
+            }
+            else
+            {
+                response.IsSuccess = false;
+                response.Message = ReplyMessages.MESSAGE_QUERY_EMPTY;
+            }
+
+            return response;
+        }
+
+        public async Task<BaseResponse<IEnumerable<MuseumResponseViewModel>>> GetMuseumsByTheme(int theme)
+        {
+            var response = new BaseResponse<IEnumerable<MuseumResponseViewModel>>();
+            var museums = await _unitOfWork.Museum.GetAllAsync();
+            var articles = await _unitOfWork.Article.GetAllAsync();
+            
+
+            if (museums is not null)
+            {
+                museums = museums.Where(w => w.Theme == theme);
+
+                foreach (var item in articles)
+                {
+                    var idMuseum = item.IdMuseum;
+                    if (museums.Where(s => s.Id == idMuseum).FirstOrDefault() != null)
+                    {
+                        var museum = museums.Where(w => w.Id == idMuseum).FirstOrDefault();
+                        item.IdMuseumNavigation = museum!;
+                        museum!.Articles.Add(item);
+                    }
+
+                }
+                
+                response.IsSuccess = true;
+                response.Data = _mapper.Map<IEnumerable<MuseumResponseViewModel>>(museums);
+                response.Message = ReplyMessages.MESSAGE_QUERY;
             }
             else
             {
@@ -309,153 +313,5 @@ namespace Application.Services
 
             return response;
         }
-
-        /*public async Task<BaseResponse<BaseEntityResponse<ArticleResponseViewModel>>> ListArticles(BaseFiltersRequest filters)
-        {
-            
-        }
-
-        public async Task<BaseResponse<ArticleResponseViewModel>> GetArticleById(int id)
-        {
-            var response = new BaseResponse<ArticleResponseViewModel>();
-            var article = await _unitOfWork.Article.GetByIdAsync(id);
-
-            if (article is not null)
-            {
-                response.IsSuccess = true;
-                response.Data = _mapper.Map<ArticleResponseViewModel>(article);
-                response.Message = ReplyMessages.MESSAGE_QUERY;
-            }
-            else
-            {
-                response.IsSuccess = false;
-                response.Message = ReplyMessages.MESSAGE_QUERY_EMPTY;
-            }
-
-            return response;
-
-        }
-
-        public async Task<BaseResponse<BaseEntityResponse<ArticleResponseViewModel>>> ListArticlesByMuseum(BaseFiltersRequest filters, int museumId)
-        {
-            var response = new BaseResponse<BaseEntityResponse<ArticleResponseViewModel>>();
-            var articles = await _unitOfWork.Article.GetArticlesByMuseum(filters, museumId);
-
-            if (articles is not null)
-            {
-                response.IsSuccess = true;
-                response.Data = _mapper.Map<BaseEntityResponse<ArticleResponseViewModel>>(articles);
-                response.Message = ReplyMessages.MESSAGE_QUERY;
-            }
-            else
-            {
-                response.IsSuccess = false;
-                response.Message = ReplyMessages.MESSAGE_QUERY_EMPTY;
-            }
-
-            return response;
-        }
-
-        public async Task<BaseResponse<bool>> RegisterArticle(ArticleRequestViewModel requestViewModel)
-        {
-            var response = new BaseResponse<bool>();
-            var validationResult = await _validationRules.ValidateAsync(requestViewModel);
-
-            if (!validationResult.IsValid) 
-            {
-                response.IsSuccess = false; 
-                response.Message = ReplyMessages.MESSAGE_VALIDATE;
-                response.Errors = validationResult.Errors;
-
-                return response;
-            }
-             
-            var article = _mapper.Map<Article>(requestViewModel);
-            response.Data = await _unitOfWork.Article.RegisterAsync(article);
-
-            if (response.Data)
-            {
-                response.IsSuccess = true;
-                response.Message = ReplyMessages.MESSAGE_SAVE;
-            }
-            else
-            {
-                response.IsSuccess = false;
-                response.Message = ReplyMessages.MESSAGE_FAILED;
-            }
-
-            return response;
-        }
-
-        public async Task<BaseResponse<bool>> EditArticle(int categoryId, ArticleRequestViewModel requestViewModel)
-        {
-            var response = new BaseResponse<bool>();
-            var articleEdit = await GetArticleById(categoryId);
-
-            if (articleEdit is null)
-            {
-                response.IsSuccess = false;
-                response.Message = ReplyMessages.MESSAGE_QUERY_EMPTY;
-            }
-            else 
-            {
-                var validationResult = await _validationRules.ValidateAsync(requestViewModel);
-
-                if (!validationResult.IsValid)
-                {
-                    response.IsSuccess = false;
-                    response.Message = ReplyMessages.MESSAGE_VALIDATE;
-                    response.Errors = validationResult.Errors;
-
-                    return response;
-                }
-
-                var article = _mapper.Map<Article>(requestViewModel);
-                article.Id = categoryId;
-                response.Data = await _unitOfWork.Article.EditAsync(article);
-
-                if (response.Data)
-                {
-                    response.IsSuccess = true;
-                    response.Message = ReplyMessages.MESSAGE_UPDATE;
-                }
-                else
-                {
-                    response.IsSuccess = false;
-                    response.Message = ReplyMessages.MESSAGE_FAILED;
-                }
-            }
-
-            return response;
-        }
-
-        public async Task<BaseResponse<bool>> DeleteArticle(int articleId)
-        {
-            var response = new BaseResponse<bool>();
-            var articleDelete = await GetArticleById(articleId);
-
-            if (articleDelete is null)
-            {
-                response.IsSuccess = false;
-                response.Message = ReplyMessages.MESSAGE_QUERY_EMPTY;
-            }
-            else 
-            {
-                response.Data = await _unitOfWork.Article.DeleteAsync(articleId);
-
-                if (response.Data)
-                {
-                    response.IsSuccess = true;
-                    response.Message = ReplyMessages.MESSAGE_DELETE;
-                }
-                else
-                {
-                    response.IsSuccess = false;
-                    response.Message = ReplyMessages.MESSAGE_FAILED;
-                }
-            }
-
-            return response;
-        }*/
     }
 }

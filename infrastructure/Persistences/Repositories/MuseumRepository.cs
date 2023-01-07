@@ -25,6 +25,11 @@ namespace Infrastructure.Persistences.Repositories
             return response;
         }
 
+        /// <summary>
+        /// Returns the Museums attending to the Given Filters
+        /// </summary>
+        /// <param name="filters">Filters to Apply</param>
+        /// <returns>A List of Museus</returns>
         public async Task<BaseEntityResponse<Museum>> ListMuseums(BaseFiltersRequest filters)
         {
             var response = new BaseEntityResponse<Museum>();
@@ -50,6 +55,27 @@ namespace Infrastructure.Persistences.Repositories
             return response;
         }
 
+        /// <summary>
+        /// Returns the Museums in the Table
+        /// </summary>
+        /// <returns>A List of All Museums</returns>
+        public async Task<BaseEntityResponse<Museum>> ListAllMuseums()
+        {
+            var response = new BaseEntityResponse<Museum>();
+
+            var museums = GetEntityQuery(x => x.DeletedAt == null);
+
+            response.TotalRecords = await museums.CountAsync();
+            response.Items = await museums.ToListAsync();
+
+            return response;
+        }
+
+        /// <summary>
+        /// Returns All Museums By the Theme specified
+        /// </summary>
+        /// <param name="theme">Theme to List the Museums</param>
+        /// <returns>List of All Museums with the specified Theme</returns>
         public async Task<BaseEntityResponse<Museum>> ListMuseumsByTheme(int theme)
         {
             var response = new BaseEntityResponse<Museum>();

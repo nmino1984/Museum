@@ -25,35 +25,6 @@ namespace Application.Services
             _validationRules = validationRules;
         }
 
-
-        /*public async Task<BaseResponse<IEnumerable<ArticleResponseViewModel>>> ListArticles(BaseFiltersRequest filters)
-        {
-            var response = new BaseResponse<IEnumerable<ArticleResponseViewModel>>();
-            var articles = await _unitOfWork.Article.GetAllAsync();
-            var museums = await _unitOfWork.Museum.GetAllAsync();
-
-            if (articles is not null)
-            {
-                foreach (var item in articles)
-                {
-                    var museum = museums.Where(w => w.Id == item.IdMuseum).FirstOrDefault();
-                    museum!.Articles.Add(item);
-                    item.IdMuseumNavigation = museum!;
-                    
-                }
-                response.IsSuccess = true;
-                response.Data = _mapper.Map<IEnumerable<ArticleResponseViewModel>>(articles);
-                response.Message = ReplyMessages.MESSAGE_QUERY;
-            }
-            else
-            {
-                response.IsSuccess = false;
-                response.Message = ReplyMessages.MESSAGE_QUERY_EMPTY;
-            }
-
-            return response;
-        }
-        */
         public async Task<BaseResponse<IEnumerable<ArticleResponseViewModel>>> ListAllArticles()
         {
             var response = new BaseResponse<IEnumerable<ArticleResponseViewModel>>();
@@ -82,26 +53,6 @@ namespace Application.Services
 
             return response;
         }
-
-        /*public async Task<BaseResponse<IEnumerable<ArticleResponseViewModel>>> ListArticlesByMuseum(BaseFiltersRequest filters, int museumId)
-        {
-            var response = new BaseResponse<IEnumerable<ArticleResponseViewModel>>();
-            var articles = await _unitOfWork.Article.GetArticlesByMuseum(filters, museumId);
-
-            if (articles is not null)
-            {
-                response.IsSuccess = true;
-                response.Data = _mapper.Map<IEnumerable<ArticleResponseViewModel>>(articles);
-                response.Message = ReplyMessages.MESSAGE_QUERY;
-            }
-            else
-            {
-                response.IsSuccess = false;
-                response.Message = ReplyMessages.MESSAGE_QUERY_EMPTY;
-            }
-
-            return response;
-        }*/
 
         public async Task<BaseResponse<ArticleResponseViewModel>> GetArticleById(int articleId)
         {

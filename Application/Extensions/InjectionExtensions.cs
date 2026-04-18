@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces;
 using Application.Services;
+using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,11 +19,8 @@ namespace Application.Extensions
         {
             services.AddSingleton(configuration);
 
-            //services.AddFluentValidationAutoValidation();
-            services.AddFluentValidation(options =>
-            {
-                options.RegisterValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies().Where(w => !w.IsDynamic));
-            });
+            services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
+            services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies().Where(w => !w.IsDynamic));
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

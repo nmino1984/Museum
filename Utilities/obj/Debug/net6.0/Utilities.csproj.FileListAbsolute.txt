@@ -34,3 +34,15 @@ D:\GitHub\C#\XtraTravel_Exercise_jueves\Museum\Utilities\obj\Debug\net6.0\Utilit
 D:\GitHub\C#\XtraTravel_Exercise_jueves\Museum\Utilities\obj\Debug\net6.0\refint\Utilities.dll
 D:\GitHub\C#\XtraTravel_Exercise_jueves\Museum\Utilities\obj\Debug\net6.0\Utilities.pdb
 D:\GitHub\C#\XtraTravel_Exercise_jueves\Museum\Utilities\obj\Debug\net6.0\ref\Utilities.dll
+C:\Users\okind\source\repos\nmino1984\Museum\Utilities\bin\Debug\net6.0\Utilities.deps.json
+C:\Users\okind\source\repos\nmino1984\Museum\Utilities\bin\Debug\net6.0\Utilities.dll
+C:\Users\okind\source\repos\nmino1984\Museum\Utilities\bin\Debug\net6.0\Utilities.pdb
+C:\Users\okind\source\repos\nmino1984\Museum\Utilities\obj\Debug\net6.0\Utilities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\okind\source\repos\nmino1984\Museum\Utilities\obj\Debug\net6.0\Utilities.AssemblyInfoInputs.cache
+C:\Users\okind\source\repos\nmino1984\Museum\Utilities\obj\Debug\net6.0\Utilities.AssemblyInfo.cs
+C:\Users\okind\source\repos\nmino1984\Museum\Utilities\obj\Debug\net6.0\Utilities.csproj.CoreCompileInputs.cache
+C:\Users\okind\source\repos\nmino1984\Museum\Utilities\obj\Debug\net6.0\Utilities.sourcelink.json
+C:\Users\okind\source\repos\nmino1984\Museum\Utilities\obj\Debug\net6.0\Utilities.dll
+C:\Users\okind\source\repos\nmino1984\Museum\Utilities\obj\Debug\net6.0\refint\Utilities.dll
+C:\Users\okind\source\repos\nmino1984\Museum\Utilities\obj\Debug\net6.0\Utilities.pdb
+C:\Users\okind\source\repos\nmino1984\Museum\Utilities\obj\Debug\net6.0\ref\Utilities.dll

@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "qZAoqA9nA0OaMudBc0MEz6N2yBQdZ8yHp2mhIuFPSgHn1Ff9VqVnylu0RSEyb65slqYJSTo/xiEGJX9l6jHwZA==",
+  "dgSpecHash": "KBs//I5Xwa8=",
   "success": true,
-  "projectFilePath": "D:\\GitHub\\C#\\XtraTravel_Exercise_jueves\\Museum\\Utilities\\Utilities.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\okind\\source\\repos\\nmino1984\\Museum\\Utilities\\Utilities.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\okind\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\9.0.15\\microsoft.windowsdesktop.app.ref.9.0.15.nupkg.sha512",
+    "C:\\Users\\okind\\.nuget\\packages\\microsoft.netcore.app.ref\\9.0.15\\microsoft.netcore.app.ref.9.0.15.nupkg.sha512",
+    "C:\\Users\\okind\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\9.0.15\\microsoft.aspnetcore.app.ref.9.0.15.nupkg.sha512"
+  ],
   "logs": []
 }

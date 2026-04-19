@@ -22,7 +22,7 @@ namespace Application.Extensions
             services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
             services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies().Where(w => !w.IsDynamic));
 
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddAutoMapper(cfg => cfg.AddMaps(Assembly.GetExecutingAssembly()));
 
             services.AddScoped<IArticleApplication, ArticleApplication>();
             services.AddScoped<IMuseumApplication, MuseumApplication>();

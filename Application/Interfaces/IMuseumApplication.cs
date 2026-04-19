@@ -14,7 +14,7 @@ namespace Application.Interfaces
         Task<BaseResponse<MuseumResponseViewModel>> GetMuseumById(int museumId);
         Task<BaseResponse<IEnumerable<MuseumResponseViewModel>>> GetMuseumsByTheme(int theme);
         Task<BaseResponse<IEnumerable<ArticleResponseViewModel>>> GetArticlesByMuseum(int museumId);
-        Task<BaseResponse<bool>> RegisterMuseum(MuseumRequestViewModel requestViewModel);
+        Task<BaseResponse<int>> RegisterMuseum(MuseumRequestViewModel requestViewModel);
         Task<BaseResponse<bool>> EditMuseum(int articleId, MuseumRequestViewModel requestViewModel);
         Task<BaseResponse<bool>> DeleteMuseum(int id);
         Task<BaseResponse<bool>> RemoveMuseum(int id);

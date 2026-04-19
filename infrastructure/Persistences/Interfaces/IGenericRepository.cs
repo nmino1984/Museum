@@ -9,6 +9,15 @@ namespace Infrastructure.Persistences.Interfaces
         Task<IEnumerable<T>> GetAllAsync();
         Task<T> GetByIdAsync(int id);
         Task<bool> RegisterAsync(T entity);
+
+        /// <summary>
+        /// Persists a collection of entities in a single database round-trip.
+        /// <c>CreatedAt</c> is set automatically for every item before insertion.
+        /// </summary>
+        /// <param name="entities">Collection of entities to insert.</param>
+        /// <returns><c>true</c> if all rows were saved successfully; otherwise <c>false</c>.</returns>
+        Task<bool> BulkRegisterAsync(IEnumerable<T> entities);
+
         Task<bool> EditAsync(T entity);
         Task<bool> DeleteAsync(int id);
         Task<bool> RemoveAsync(int id);

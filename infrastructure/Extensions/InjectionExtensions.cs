@@ -15,7 +15,7 @@ namespace Infrastructure.Extensions
 
             services.AddDbContext<MuseumsDbContext>(
                 options => options.UseSqlServer(
-                    configuration.GetConnectionString("MuseumsDBConnectionString"), b => b.MigrationsAssembly(assembly)), ServiceLifetime.Transient);
+                    configuration.GetConnectionString("MuseumsDBConnectionString"), b => b.MigrationsAssembly(assembly)), ServiceLifetime.Scoped);
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 

@@ -62,6 +62,27 @@ namespace Infrastructure.Persistences.Repositories
         }
 
         /// <summary>
+        /// Inserts a collection of entities in a single database round-trip using <c>AddRangeAsync</c>.
+        /// <c>CreatedAt</c> is stamped on every item before the batch is saved.
+        /// </summary>
+        /// <param name="entities">Entities to insert.</param>
+        /// <returns><c>true</c> if the number of rows saved equals the number of entities provided; otherwise <c>false</c>.</returns>
+        public async Task<bool> BulkRegisterAsync(IEnumerable<T> entities)
+        {
+            var list = entities.ToList();
+            var now = DateTime.Now;
+
+            foreach (var entity in list)
+                entity.CreatedAt = now;
+
+            await _context.AddRangeAsync(list);
+
+            var rowsAffected = await _context.SaveChangesAsync();
+
+            return rowsAffected == list.Count;
+        }
+
+        /// <summary>
         /// Edit an Item Given
         /// </summary>
         /// <param name="entity">Item to Edit</param>

@@ -20,5 +20,6 @@ namespace Utilities.Statics
         public const string MESSAGE_VALIDATE = "Errors on the Validation";
         public const string MESSAGE_FAILED = "Operation Failed";
         public const string MESSAGE_DAMAGED = "Item had been marked as Damaged!";
+        public const string MESSAGE_HAS_ARTICLES = "Cannot delete a Museum that has active Articles. Remove or Relocate them first.";
     }
 }

@@ -10,6 +10,9 @@ namespace Application.Validators
             RuleFor(x => x.Name)
                 .NotNull().WithMessage("Name can't be Null")
                 .NotEmpty().WithMessage("Name can't be Empty");
+
+            RuleFor(x => x.IdMuseum)
+                .GreaterThan(0).WithMessage("IdMuseum must reference a valid Museum");
         }
     }
 }

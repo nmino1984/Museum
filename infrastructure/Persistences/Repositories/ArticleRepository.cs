@@ -80,9 +80,26 @@ namespace Infrastructure.Persistences.Repositories
             }
 
             response.TotalRecords = await articles.CountAsync();
-            response.Items = await Ordering(filters, articles).ToListAsync(); 
+            response.Items = await Ordering(filters, articles).ToListAsync();
 
             return response;
+        }
+
+        /// <summary>
+        /// Marks an article as damaged by setting its <c>IsDamaged</c> flag to <c>true</c>.
+        /// Returns <c>false</c> if the article does not exist or has been soft-deleted.
+        /// Only <c>IsDamaged</c> and <c>UpdatedAt</c> are modified; all other columns remain unchanged.
+        /// </summary>
+        /// <param name="articleId">Primary key of the article to mark as damaged.</param>
+        /// <returns><c>true</c> if the update succeeded; <c>false</c> if the article was not found or is deleted.</returns>
+        public async Task<bool> MarkAsDamagedAsync(int articleId)
+        {
+            var article = await GetByIdAsync(articleId);
+            if (article is null || article.DeletedAt is not null)
+                return false;
+
+            article.IsDamaged = true;
+            return await EditAsync(article);
         }
     }
 }

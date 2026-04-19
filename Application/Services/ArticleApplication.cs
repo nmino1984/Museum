@@ -81,26 +81,27 @@ namespace Application.Services
 
         }
 
-        public async Task<BaseResponse<bool>> RegisterArticle(ArticleRequestViewModel requestViewModel)
+        public async Task<BaseResponse<int>> RegisterArticle(ArticleRequestViewModel requestViewModel)
         {
-            var response = new BaseResponse<bool>();
+            var response = new BaseResponse<int>();
             var validationResult = await _validationRules.ValidateAsync(requestViewModel);
 
-            if (!validationResult.IsValid) 
+            if (!validationResult.IsValid)
             {
-                response.IsSuccess = false; 
+                response.IsSuccess = false;
                 response.Message = ReplyMessages.MESSAGE_VALIDATE;
                 response.Errors = validationResult.Errors;
 
                 return response;
             }
-             
-            var article = _mapper.Map<Article>(requestViewModel);
-            response.Data = await _unitOfWork.Article.RegisterAsync(article);
 
-            if (response.Data)
+            var article = _mapper.Map<Article>(requestViewModel);
+            var success = await _unitOfWork.Article.RegisterAsync(article);
+
+            if (success)
             {
                 response.IsSuccess = true;
+                response.Data = article.Id;
                 response.Message = ReplyMessages.MESSAGE_SAVE;
             }
             else
@@ -207,6 +208,145 @@ namespace Application.Services
                     response.IsSuccess = false;
                     response.Message = ReplyMessages.MESSAGE_FAILED;
                 }
+            }
+
+            return response;
+        }
+
+        /// <summary>
+        /// Validates every item in the collection using the configured <see cref="ArticleValidator"/>.
+        /// If all items pass, inserts them in a single database round-trip via <c>BulkRegisterAsync</c>.
+        /// If any item fails validation, the method returns immediately with the first set of errors found
+        /// and no rows are written to the database.
+        /// </summary>
+        /// <param name="requestViewModels">Collection of articles to create.</param>
+        public async Task<BaseResponse<int>> BulkRegisterArticles(IEnumerable<ArticleRequestViewModel> requestViewModels)
+        {
+            var response = new BaseResponse<int>();
+            var items = requestViewModels.ToList();
+
+            if (items.Count == 0)
+            {
+                response.IsSuccess = false;
+                response.Message = ReplyMessages.MESSAGE_QUERY_EMPTY;
+                return response;
+            }
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                var validationResult = await _validationRules.ValidateAsync(items[i]);
+
+                if (!validationResult.IsValid)
+                {
+                    response.IsSuccess = false;
+                    response.Message = $"{ReplyMessages.MESSAGE_VALIDATE} (item index {i})";
+                    response.Errors = validationResult.Errors;
+                    return response;
+                }
+            }
+
+            var articles = _mapper.Map<IEnumerable<Article>>(items);
+            var success = await _unitOfWork.Article.BulkRegisterAsync(articles);
+
+            if (success)
+            {
+                response.IsSuccess = true;
+                response.Data = items.Count;
+                response.Message = ReplyMessages.MESSAGE_SAVE;
+            }
+            else
+            {
+                response.IsSuccess = false;
+                response.Message = ReplyMessages.MESSAGE_FAILED;
+            }
+
+            return response;
+        }
+
+        /// <summary>
+        /// Marks the specified article as damaged. The operation is rejected if the article
+        /// does not exist or has already been soft-deleted.
+        /// Only the <c>IsDamaged</c> and <c>UpdatedAt</c> columns are modified in the database.
+        /// </summary>
+        /// <param name="articleId">Primary key of the article to mark as damaged.</param>
+        public async Task<BaseResponse<bool>> MarkArticleAsDamaged(int articleId)
+        {
+            var response = new BaseResponse<bool>();
+            var existing = await GetArticleById(articleId);
+
+            if (existing.Data is null)
+            {
+                response.IsSuccess = false;
+                response.Message = ReplyMessages.MESSAGE_QUERY_EMPTY;
+                return response;
+            }
+
+            response.Data = await _unitOfWork.Article.MarkAsDamagedAsync(articleId);
+
+            if (response.Data)
+            {
+                response.IsSuccess = true;
+                response.Message = ReplyMessages.MESSAGE_DAMAGED;
+            }
+            else
+            {
+                response.IsSuccess = false;
+                response.Message = ReplyMessages.MESSAGE_FAILED;
+            }
+
+            return response;
+        }
+
+        /// <summary>
+        /// Moves an article to a different museum by replacing its <c>IdMuseum</c> foreign key.
+        /// The method verifies that both the article and the target museum exist and are active
+        /// (not soft-deleted) before persisting the change.
+        /// Only <c>IdMuseum</c> and <c>UpdatedAt</c> are modified; all other fields remain unchanged.
+        /// </summary>
+        /// <param name="articleId">Primary key of the article to relocate.</param>
+        /// <param name="requestViewModel">DTO containing the destination museum identifier.</param>
+        public async Task<BaseResponse<bool>> RelocateArticle(int articleId, RelocateArticleRequestViewModel requestViewModel)
+        {
+            var response = new BaseResponse<bool>();
+
+            var existingArticleResponse = await GetArticleById(articleId);
+            if (existingArticleResponse.Data is null)
+            {
+                response.IsSuccess = false;
+                response.Message = ReplyMessages.MESSAGE_QUERY_EMPTY;
+                return response;
+            }
+
+            var targetMuseum = await _unitOfWork.Museum.GetByIdAsync(requestViewModel.NewMuseumId);
+            if (targetMuseum is null)
+            {
+                response.IsSuccess = false;
+                response.Message = ReplyMessages.MESSAGE_QUERY_EMPTY;
+                return response;
+            }
+
+            if (existingArticleResponse.Data.IdMuseum == requestViewModel.NewMuseumId)
+            {
+                response.IsSuccess = true;
+                response.Message = ReplyMessages.MESSAGE_UPDATE;
+                response.Data = true;
+                return response;
+            }
+
+            var article = await _unitOfWork.Article.GetByIdAsync(articleId);
+            article.IdMuseum = requestViewModel.NewMuseumId;
+
+            response.Data = await _unitOfWork.Article.EditAsync(article);
+
+            if (response.Data)
+            {
+                response.IsSuccess = true;
+                response.Message = ReplyMessages.MESSAGE_UPDATE;
+            }
+            else
+            {
+                response.IsSuccess = false;
+                response.Message = ReplyMessages.MESSAGE_FAILED;
             }
 
             return response;

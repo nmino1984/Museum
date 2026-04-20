@@ -52,10 +52,10 @@ cd Museum
 # 3. Aplicar migraciones
 dotnet ef database update \
   --project Infrastructure/Infrastructure.csproj \
-  --startup-project WebAPI/WebAPI.csproj
+  --startup-project WebAPI/API.csproj
 
 # 4. Ejecutar la API
-dotnet run --project WebAPI/WebAPI.csproj
+dotnet run --project WebAPI/API.csproj
 ```
 
 Swagger disponible en `https://localhost:<puerto>/swagger/index.html`.

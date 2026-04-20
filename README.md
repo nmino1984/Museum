@@ -179,10 +179,10 @@ cd Museum
 # 3. Apply EF Core migrations
 dotnet ef database update \
   --project Infrastructure/Infrastructure.csproj \
-  --startup-project WebAPI/WebAPI.csproj
+  --startup-project WebAPI/API.csproj
 
 # 4. Run the API
-dotnet run --project WebAPI/WebAPI.csproj
+dotnet run --project WebAPI/API.csproj
 ```
 
 Swagger UI will be available at `https://localhost:<port>/swagger/index.html`.

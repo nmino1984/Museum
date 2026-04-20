@@ -9,13 +9,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 dotnet build
 
 # Run the API (from repo root)
-dotnet run --project WebAPI/WebAPI.csproj
+dotnet run --project WebAPI/API.csproj
 
 # Apply EF Core migrations
-dotnet ef database update --project Infrastructure/Infrastructure.csproj --startup-project WebAPI/WebAPI.csproj
+dotnet ef database update --project Infrastructure/Infrastructure.csproj --startup-project WebAPI/API.csproj
 
 # Add a new migration
-dotnet ef migrations add <MigrationName> --project Infrastructure/Infrastructure.csproj --startup-project WebAPI/WebAPI.csproj
+dotnet ef migrations add <MigrationName> --project Infrastructure/Infrastructure.csproj --startup-project WebAPI/API.csproj
 
 # Run tests
 dotnet test Test/Test.csproj
